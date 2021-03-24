@@ -1,8 +1,11 @@
 CC=g++
 FLAGS=-std=c++17 -Wall
 
-test: tests.cpp
-	$(CC) $(FLAGS) -o test tests.cpp 
+all: sphere01.hpp tests.cpp
+	$(CC) $(FLAGS) -o tests sphere01.hpp tests.cpp 
+
+test: tests
+	valgrind ./tests
 
 clean:
-	rm -rf *.o test
+	rm -rf *.o tests
