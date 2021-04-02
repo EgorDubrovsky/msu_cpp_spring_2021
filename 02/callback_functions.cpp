@@ -22,7 +22,7 @@ std::string FoundNumber(const std::string &param)
 
 std::string Increase(const std::string &param)
 {
-	return(std::to_string(stoi(param) + 1));
+	return(std::to_string(stoull(param) + 1));
 }
 
 std::string FoundString(const std::string &param)

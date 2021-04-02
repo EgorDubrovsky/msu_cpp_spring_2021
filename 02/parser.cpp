@@ -66,6 +66,15 @@ std::string TokenParser::Parse(const std::string &input_str)
 				break;
 				case DIGIT:
 					cur_token.push_back(cur_char);
+					//  Проверяем на переполнение
+					try
+					{
+						stoull(cur_token);
+					}
+					catch(std::out_of_range)
+					{
+						state = STRING;
+					}
 				break;
 				case STRING:
 					cur_token.push_back(cur_char);

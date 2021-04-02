@@ -11,6 +11,8 @@ enum ParserState
 	STRING
 };
 
+const uint64_t MAX_DIGIT = 18446744073709551615ULL;
+
 class TokenParser
 {
 	std::function<std::string(const std::string &)> start_func = nullptr;

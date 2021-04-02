@@ -84,12 +84,29 @@ void RedefineCallbackTest()
 	assert(string_parsed == "x = ");
 }
 
+//  Проверка переполнения uint64_t
+void Uint64OverflowTest()
+{
+	std::string string_to_parse = ReadStringFromFile("test3.txt");
+	
+	TokenParser my_parser;
+	my_parser.SetDigitTokenCallback(FoundNumber);
+	my_parser.SetStringTokenCallback(FoundString);
+	
+	std::string string_parsed = my_parser.Parse(string_to_parse);
+	
+	assert(string_parsed == "Found a number: 18446744073709551615\n"
+							"Found a string: 18446744073709551616\n"
+							"Found a string: 111111111111111111111111111111111111111111111\n");
+}
+
 int main()
 {
 	NoCallbacksTest();
 	StandardCallbacksTest();
 	PartialCallbacksTest();
 	RedefineCallbackTest();
+	Uint64OverflowTest();
 	
 	std::cout << "All tests passed!\n";
 }
